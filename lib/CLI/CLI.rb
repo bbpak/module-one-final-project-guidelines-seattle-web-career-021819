@@ -9,7 +9,6 @@ end
 
 # Gratuitous ASCII art introduction
 def welcome
-  return
   system "clear"
   aa = Artii::Base.new :font => 'univers'
   bb = Artii::Base.new :font => 'doh'

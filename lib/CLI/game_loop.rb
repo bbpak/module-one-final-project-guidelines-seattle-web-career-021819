@@ -91,7 +91,7 @@ def ask_for_answer(curr_question, answer_hash, correct, colorized_ans = nil)
       no_helper_usage("phone-a-friend", curr_question, answer_hash, correct, colorized_ans)
     else
       phone_a_friend(curr_question, answer_hash, colorized_ans)
-      ask_for_answer(curr_question, answer_hash, correct)
+      ask_for_answer(curr_question, answer_hash, correct, colorized_ans)
     end
   # Else check answer for correctness
   else
