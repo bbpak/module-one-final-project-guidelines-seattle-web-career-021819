@@ -18,11 +18,11 @@ def welcome
   system "clear"
   puts aa.asciify("Who Wants To Be A")
   sleep(1)
-  puts bb.asciify("Millionbear").center(100)
-  puts cc.asciify("$$$$$$$$$$$$$$$$$$$$$$$").center(100)
+  puts bb.asciify("   Millionbear").center(100)
+  puts cc.asciify(" $$$$$$$$$$$$$$$$$$$$$$$").center(100)
   sleep(2)
   system "clear"
-  puts aa.asciify "With your host"
+  puts aa.asciify "      With your host"
   sleep(1)
   system "clear"
   puts bb.asciify "Alex Trebear"
@@ -40,8 +40,10 @@ end
 # And creates new user instance
 
 def get_user
-  print "What's your name? ".center(140)
-  new_name = gets.chomp
+  puts "What's your name?".center(190)
+  print "                                                "
+  print "                                                "
+  new_name = gets.chomp.center
   puts
   new_user = User.create(name: new_name)
   new_user
