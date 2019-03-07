@@ -95,6 +95,9 @@ def shuffle_and_print_answers(question)
     letter = letter.next
   end
 
+  bear_eyes2
+  puts
+  puts
   puts question.question.center($GAME_WIDTH)
   puts
   puts print_answers(answers_hash)
@@ -165,16 +168,19 @@ def print_colorized_answers(answers, guess, correct)
       "#{letter}. #{answer}"
     end
   end
-end
 
-def print_answers(answers)
   Terminal::Table.new do |t|
-    t.add_row ["A. #{answers["A"]}", "B. #{answers["B"]}"]
-    t.add_row ["C. #{answers["C"]}", "D. #{answers["D"]}"]
+    t.add_row [
+      colorized_ans[0],
+      colorized_ans[1]
+    ]
+    t.add_row [
+      colorized_ans[2],
+      colorized_ans[3]
+    ]
     t.style = {:all_separators => true, :width => $GAME_WIDTH}
   end
 end
-
 # Prints message after user quits
 def end_message
   puts "Thanks for playing!"
