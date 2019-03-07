@@ -10,7 +10,6 @@ end
 
 # Gratuitous ASCII art introduction
 def welcome
-  return
   system "clear"
   aa = Artii::Base.new :font => 'univers'
   bb = Artii::Base.new :font => 'doh'
@@ -48,7 +47,7 @@ def get_user
   print "".center(95)
   new_name = gets.chomp
   puts
-  new_user = User.create(name: new_name)
+  new_user = User.find_or_create_by(name: new_name)
   new_user
 end
 
