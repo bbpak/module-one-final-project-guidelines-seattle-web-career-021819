@@ -15,17 +15,17 @@ def welcome
   bb = Artii::Base.new :font => 'doh'
   cc = Artii::Base.new :font => 'larry3d'
   dd = Artii::Base.new :font => 'banner3'
-  # puts bb.asciify('Welcome to')
-  # sleep(2)
-  # system "clear"
-  # puts aa.asciify("Who Wants To Be A")
-  # sleep(1)
-  # puts bb.asciify("   Millionbear").center(100)
-  # puts cc.asciify(" $$$$$$$$$$$$$$$$$$$$$$$").center(100)
-  # sleep(2)
-  # system "clear"
-  # puts aa.asciify "      With your host"
-  # sleep(1)
+  puts bb.asciify('Welcome to')
+  sleep(2)
+  system "clear"
+  puts aa.asciify("Who Wants To Be A")
+  sleep(1)
+  puts bb.asciify("   Millionbear").center(100)
+  puts cc.asciify(" $$$$$$$$$$$$$$$$$$$$$$$").center(100)
+  sleep(2)
+  system "clear"
+  puts aa.asciify "      With your host"
+  sleep(1)
   system "clear"
   puts bb.asciify "Alex"
   puts bb.asciify "Trebear"
@@ -51,16 +51,7 @@ def get_user
   new_user = User.create(name: new_name)
   new_user
 end
-# def get_user
-#   dd= Artii::Base.new :font => 'invita'
-#   puts
-#   puts dd.asciify("What's your name?")
-#   new_name = gets.chomp
-#   puts
-#   system "clear"
-#   new_user = User.create(name: new_name)
-#   new_user
-# end
+
 
 # Main menu for user to start game, view leaderboard, or exit
 def menu(user)
@@ -69,23 +60,18 @@ def menu(user)
   aa = Artii::Base.new :font => 'doom'
   puts aa.asciify("What would you like to do?")
   puts
-  puts aa.asciify("1. Play a new game")
+  puts aa.asciify("1. Play a New Game")
   puts aa.asciify("2. View Leaderboard")
-  puts aa.asciify("3. Exit")
-
-  # puts "What would you like to do?".center($GAME_WIDTH)
-  # puts
-  # puts "1. Play a new game ".center($GAME_WIDTH)
-  # puts "2. View Leaderboard".center($GAME_WIDTH)
-  # puts "3. Exit            ".center($GAME_WIDTH)
-  # puts "4. Credits         ".center($GAME_WIDTH)
-
+  puts aa.asciify("3. How to Play")
+  puts aa.asciify("4. Exit")
   user_input = gets.chomp
   if user_input == "1"
     start_game(user)
   elsif user_input == "2"
     display_leaderboard(user)
-  elsif user_input == "3"
+  elsif user_input == '3'
+    how_to_play(user)
+  elsif user_input == "4"
     system "clear"
     puts aa.asciify("Thanks for playing!")
     bye_bear
