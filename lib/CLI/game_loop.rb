@@ -69,7 +69,7 @@ end
 
 # Prints asking for user's answer and asks for input
 # And then checks the user answer for correctness
-def ask_for_answer(curr_question, answer_hash, correct)
+def ask_for_answer(curr_question, answer_hash, correct, colorized_ans = nil)
   puts "(#{curr_question.difficulty.capitalize}, $#{curr_question.score} | 50/50: #{$game_session.fifty_fifty}, Phone-a-friend: #{$game_session.phone_a_friend})"
   print "Enter your answer: "
   # user_input = gets.chomp
@@ -78,18 +78,18 @@ def ask_for_answer(curr_question, answer_hash, correct)
   # Check for use of gameshow helpers
   if (user_input.downcase.start_with?("fifty") || user_input.start_with?("50"))
     if $game_session.fifty_fifty == 0
-      no_helper_usage("fifty-fifty", curr_question, answer_hash, correct)
+      no_helper_usage("fifty-fifty", curr_question, answer_hash, correct, colorized_ans)
     else
-      new_q = fifty_fifty(answer_hash, correct)
+      colorized_ans = fifty_fifty(answer_hash, correct)
       print_question(curr_question)
-      puts new_q
-      ask_for_answer(curr_question, answer_hash, correct)
+      puts colorized_ans
+      ask_for_answer(curr_question, answer_hash, correct, colorized_ans)
     end
   elsif (user_input.downcase.start_with?("phone"))
     if $game_session.phone_a_friend == 0
-      no_helper_usage("phone-a-friend", curr_question, answer_hash, correct)
+      no_helper_usage("phone-a-friend", curr_question, answer_hash, correct, colorized_ans)
     else
-      phone_a_friend(curr_question, answer_hash)
+      phone_a_friend(curr_question, answer_hash, colorized_ans)
       ask_for_answer(curr_question, answer_hash, correct)
     end
   # Else check answer for correctness
@@ -100,12 +100,16 @@ def ask_for_answer(curr_question, answer_hash, correct)
   end
 end
 
-def no_helper_usage(helper, curr_question, answer_hash, correct)
+def no_helper_usage(helper, curr_question, answer_hash, correct, colorized_ans)
   system "clear"
   puts "You've already used up your #{helper} hints.".center($GAME_WIDTH).colorize(:red)
   print_question(curr_question)
-  print_answers(answer_hash)
-  ask_for_answer(curr_question, answer_hash, correct)
+  if colorized_ans
+    puts colorized_ans
+  else
+    print_answers(answer_hash)
+  end
+  ask_for_answer(curr_question, answer_hash, correct, colorized_ans)
 end
 
 # Gets user answer

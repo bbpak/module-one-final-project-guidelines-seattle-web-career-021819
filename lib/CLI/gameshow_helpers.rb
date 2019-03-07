@@ -1,4 +1,4 @@
-def phone_a_friend(question, answers)
+def phone_a_friend(question, answers, colorized_ans)
   $game_session.update(phone_a_friend: $game_session.phone_a_friend-1)
   system "clear"
   puts
@@ -7,7 +7,11 @@ def phone_a_friend(question, answers)
   puts
 
   print_question(question, "phone")
-  print_answers(answers)
+  if colorized_ans
+     puts colorized_ans
+   else
+     print_answers(answers)
+   end
 end
 
 def fifty_fifty(answers, correct)
@@ -27,7 +31,7 @@ def fifty_fifty(answers, correct)
      end
   end
 
-  new_q = Terminal::Table.new do |t|
+  colored_ans = Terminal::Table.new do |t|
     t.add_row [
       colorized_ans[0],
       colorized_ans[1]
@@ -39,5 +43,5 @@ def fifty_fifty(answers, correct)
     t.style = {:all_separators => true, :width => $GAME_WIDTH}
   end
 
-  new_q
+  colored_ans
 end
