@@ -14,19 +14,21 @@ def welcome
   aa = Artii::Base.new :font => 'univers'
   bb = Artii::Base.new :font => 'doh'
   cc = Artii::Base.new :font => 'larry3d'
-  puts bb.asciify('Welcome to')
-  sleep(2)
+  dd = Artii::Base.new :font => 'banner3'
+  # puts bb.asciify('Welcome to')
+  # sleep(2)
+  # system "clear"
+  # puts aa.asciify("Who Wants To Be A")
+  # sleep(1)
+  # puts bb.asciify("   Millionbear").center(100)
+  # puts cc.asciify(" $$$$$$$$$$$$$$$$$$$$$$$").center(100)
+  # sleep(2)
+  # system "clear"
+  # puts aa.asciify "      With your host"
+  # sleep(1)
   system "clear"
-  puts aa.asciify("Who Wants To Be A")
-  sleep(1)
-  puts bb.asciify("   Millionbear").center(100)
-  puts cc.asciify(" $$$$$$$$$$$$$$$$$$$$$$$").center(100)
-  sleep(2)
-  system "clear"
-  puts aa.asciify "      With your host"
-  sleep(1)
-  system "clear"
-  puts bb.asciify "Alex Trebear"
+  puts bb.asciify "Alex"
+  puts bb.asciify "Trebear"
   sleep(2)
   system "clear"
   #bear_host
@@ -64,7 +66,7 @@ end
 def menu(user)
   system "clear"
   print "\e[8;1000;1000t"
-  aa = Artii::Base.new :font => 'small'
+  aa = Artii::Base.new :font => 'doom'
   puts aa.asciify("What would you like to do?")
   puts
   puts aa.asciify("1. Play a new game")
