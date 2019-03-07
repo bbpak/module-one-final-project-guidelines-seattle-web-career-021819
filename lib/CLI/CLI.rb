@@ -40,10 +40,10 @@ end
 # And creates new user instance
 
 def get_user
-  puts "What's your name?".center(190)
+  puts "What's your name?".center(200)
   print "                                                "
   print "                                                "
-  new_name = gets.chomp.center
+  new_name = gets.chomp
   puts
   new_user = User.create(name: new_name)
   new_user
@@ -69,6 +69,14 @@ def menu(user)
   puts aa.asciify("1. Play a new game")
   puts aa.asciify("2. View Leaderboard")
   puts aa.asciify("3. Exit")
+
+  # puts "What would you like to do?".center($GAME_WIDTH)
+  # puts
+  # puts "1. Play a new game ".center($GAME_WIDTH)
+  # puts "2. View Leaderboard".center($GAME_WIDTH)
+  # puts "3. Exit            ".center($GAME_WIDTH)
+  # puts "4. Credits         ".center($GAME_WIDTH)
+
   user_input = gets.chomp
   if user_input == "1"
     start_game(user)
