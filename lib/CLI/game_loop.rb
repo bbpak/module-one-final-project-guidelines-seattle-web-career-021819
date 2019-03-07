@@ -20,7 +20,12 @@ end
 # start new game session for user
 def initiate_game(user)
   clear_all
-  $game_session = GameSession.create(user_id: user.id, total_score: 0)
+  $game_session = GameSession.create(
+    user_id: user.id,
+    total_score: 0,
+    fifty_fifty: 1,
+    phone_a_friend: 1
+  )
 end
 
 # Question loop that fetches questions with increasing difficulty
@@ -58,10 +63,28 @@ def question_loop
     answer_hash = shuffle_and_print_answers(curr_question)
     curr_question.update(used: true)
 
-    puts "(#{curr_question.difficulty.capitalize}, $#{curr_question.score})"
-    print "Enter your answer: "
-    # user_input = gets.chomp
-    user_input = get_answer
+    ask_for_answer(curr_question, answer_hash, curr_question.correct)
+  end
+end
+
+# Prints asking for user's answer and asks for input
+# And then checks the user answer for correctness
+def ask_for_answer(curr_question, answer_hash, correct)
+  puts "(#{curr_question.difficulty.capitalize}, $#{curr_question.score} | 50/50: #{$game_session.fifty_fifty}, Phone-a-friend: #{$game_session.phone_a_friend})"
+  print "Enter your answer: "
+  # user_input = gets.chomp
+  user_input = get_answer(curr_question, answer_hash, correct)
+
+  # Check for use of gameshow helpers
+  if $game_session.fifty_fifty > 0 && (user_input.downcase.start_with?("fifty") || user_input.start_with?("50"))
+    new_q = fifty_fifty(answer_hash, correct)
+    print_question(curr_question)
+    puts new_q
+    ask_for_answer(curr_question, answer_hash, correct)
+  elsif $game_session.phone_a_friend > 0 && (user_input.downcase.start_with?("phone"))
+    phone_a_friend
+    ask_for_answer(curr_question, answer_hash, correct)
+  else
     check_answer(curr_question, answer_hash, user_input)
     sleep(3) if !$TEST_MODE
     system "clear"
@@ -69,7 +92,7 @@ def question_loop
 end
 
 # Gets user answer
-def get_answer
+def get_answer(question, answer_hash, correct)
   user_input = gets.chomp
   if user_input.empty?
     get_answer

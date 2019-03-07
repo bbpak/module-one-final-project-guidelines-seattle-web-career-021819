@@ -67,6 +67,7 @@ def menu(user)
     return nil
   else
     puts "Selection not recognized"
+    menu(user)
   end
 end
 

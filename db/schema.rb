@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 5) do
   create_table "game_sessions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "total_score"
+    t.integer "fifty_fifty"
+    t.integer "phone_a_friend"
   end
 
   create_table "questions", force: :cascade do |t|
