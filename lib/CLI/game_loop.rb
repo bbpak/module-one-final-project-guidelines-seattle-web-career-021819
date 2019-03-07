@@ -76,14 +76,23 @@ def ask_for_answer(curr_question, answer_hash, correct)
   user_input = get_answer(curr_question, answer_hash, correct)
 
   # Check for use of gameshow helpers
-  if $game_session.fifty_fifty > 0 && (user_input.downcase.start_with?("fifty") || user_input.start_with?("50"))
-    new_q = fifty_fifty(answer_hash, correct)
-    print_question(curr_question)
-    puts new_q
-    ask_for_answer(curr_question, answer_hash, correct)
-  elsif $game_session.phone_a_friend > 0 && (user_input.downcase.start_with?("phone"))
-    phone_a_friend(curr_question, answer_hash)
-    ask_for_answer(curr_question, answer_hash, correct)
+  if (user_input.downcase.start_with?("fifty") || user_input.start_with?("50"))
+    if $game_session.fifty_fifty == 0
+      no_helper_usage("fifty-fifty", curr_question, answer_hash, correct)
+    else
+      new_q = fifty_fifty(answer_hash, correct)
+      print_question(curr_question)
+      puts new_q
+      ask_for_answer(curr_question, answer_hash, correct)
+    end
+  elsif (user_input.downcase.start_with?("phone"))
+    if $game_session.phone_a_friend == 0
+      no_helper_usage("phone-a-friend", curr_question, answer_hash, correct)
+    else
+      phone_a_friend(curr_question, answer_hash)
+      ask_for_answer(curr_question, answer_hash, correct)
+    end
+  # Else check answer for correctness
   else
     check_answer(curr_question, answer_hash, user_input)
     sleep(3) if !$TEST_MODE
@@ -91,8 +100,16 @@ def ask_for_answer(curr_question, answer_hash, correct)
   end
 end
 
+def no_helper_usage(helper, curr_question, answer_hash, correct)
+  system "clear"
+  puts "You've already used up your #{helper} hints.".center($GAME_WIDTH).colorize(:red)
+  print_question(curr_question)
+  print_answers(answer_hash)
+  ask_for_answer(curr_question, answer_hash, correct)
+end
+
 # Gets user answer
-def get_answer(question, answer_hash, correct)
+def get_answer(question=nil, answer_hash=nil, correct=nil)
   user_input = gets.chomp
   if user_input.empty?
     get_answer
@@ -128,16 +145,16 @@ def shuffle_and_print_answers(question)
     question.incorrect3
   ].shuffle
 
-  answers_hash = {}
+  answer_hash = {}
   letter = "A"
   answers.each do |answer|
-    answers_hash[letter] = answer
+    answer_hash[letter] = answer
     letter = letter.next
   end
 
   print_question(question)
-  print_answers(answers_hash)
-  return answers_hash
+  print_answers(answer_hash)
+  return answer_hash
 end
 
 
