@@ -68,9 +68,10 @@ def menu(user)
   aa = Artii::Base.new :font => 'doom'
   puts aa.asciify("What would you like to do?")
   puts
-  puts aa.asciify("1. Play a new game")
+  puts aa.asciify("1. Play a New Game")
   puts aa.asciify("2. View Leaderboard")
-  puts aa.asciify("3. Exit")
+  puts aa.asciify("3. How to Play")
+  puts aa.asciify("4. Exit")
 
   # puts "What would you like to do?".center($GAME_WIDTH)
   # puts
@@ -84,7 +85,9 @@ def menu(user)
     start_game(user)
   elsif user_input == "2"
     display_leaderboard(user)
-  elsif user_input == "3"
+  elsif user_input == '3'
+    how_to_play(user)
+  elsif user_input == "4"
     system "clear"
     puts aa.asciify("Thanks for playing!")
     bye_bear
