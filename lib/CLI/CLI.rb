@@ -10,6 +10,7 @@ end
 
 # Gratuitous ASCII art introduction
 def welcome
+  return
   system "clear"
   aa = Artii::Base.new :font => 'univers'
   bb = Artii::Base.new :font => 'doh'
@@ -20,15 +21,15 @@ def welcome
   system "clear"
   puts aa.asciify("Who Wants To Be A")
   sleep(1)
-  puts bb.asciify("   Millionbear").center(100)
-  puts cc.asciify(" $$$$$$$$$$$$$$$$$$$$$$$").center(100)
+  puts bb.asciify("   Millionbear")
+  puts cc.asciify(" $$$$$$$$$$$$$$$$$$$$$$$")
   sleep(2)
   system "clear"
   puts aa.asciify "      With your host"
   sleep(1)
   system "clear"
-  puts bb.asciify "Alex"
-  puts bb.asciify "Trebear"
+  puts bb.asciify "            Alex"
+  puts bb.asciify "       Trebear"
   sleep(2)
   system "clear"
   #bear_host
@@ -43,9 +44,8 @@ end
 # And creates new user instance
 
 def get_user
-  puts "What's your name?".center(200)
-  print "                                                "
-  print "                                                "
+  print "What's your name?".center(`tput cols`.to_i)
+  print "".center(95)
   new_name = gets.chomp
   puts
   new_user = User.create(name: new_name)
@@ -58,12 +58,12 @@ def menu(user)
   system "clear"
   print "\e[8;1000;1000t"
   aa = Artii::Base.new :font => 'doom'
-  puts aa.asciify("What would you like to do?")
+  puts aa.asciify("What would you like to do?".center(110))
   puts
-  puts aa.asciify("1. Play a New Game")
-  puts aa.asciify("2. View Leaderboard")
-  puts aa.asciify("3. How to Play")
-  puts aa.asciify("4. Exit")
+  puts aa.asciify("1.  Play a New Game ".center(125))
+  puts aa.asciify("2.  View Leaderboard".center(125))
+  puts aa.asciify("3.  How to Play     ".center(125))
+  puts aa.asciify("4.  Exit            ".center(125))
   user_input = gets.chomp
   if user_input == "1"
     start_game(user)
@@ -89,7 +89,7 @@ def display_leaderboard(user)
   rows = []
   count = 1
   puts
-  puts "Leaderboard:".center(200)
+  puts "Leaderboard:".center(`tput cols`.to_i)
   puts
   top_scores = GameSession.all.max_by(10){|sesh| sesh.total_score}
   top_scores.each do |gg|
@@ -100,7 +100,7 @@ def display_leaderboard(user)
    table = Terminal::Table.new do |t|
     t.headings = ["Rank", "Name", "Score"]
     t.rows = rows
-    t.style = {:margin_left => ''.center(85)}
+    t.style = {:margin_left => ''.center($GAME_WIDTH)}
   end
 
    puts table

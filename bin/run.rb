@@ -1,4 +1,4 @@
 require_relative '../config/environment'
-$TEST_MODE = true
+$TEST_MODE = false
 $GAME_WIDTH = 85
 play_game
