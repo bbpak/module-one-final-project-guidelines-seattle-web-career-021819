@@ -4,6 +4,7 @@ def play_game
   print "\e[8;1000;1000t"
   welcome if !$TEST_MODE
   current_user = get_user
+  system "clear"
   menu(current_user)
 end
 
@@ -23,18 +24,7 @@ def welcome
   puts cc.asciify("$$$$$$$$$$$$$$$$$$$$$$$").center(100)
   sleep(2)
   system "clear"
-  puts aa.asciify "With your host"
-  sleep(1)
-  system "clear"
-  puts bb.asciify "Alex Trebear"
-  sleep(2)
-  system "clear"
-  #bear_host
-  Catpix::print_image "lib/cli/img/bear5.png",
-    :center_x => true,
-    :resolution => "low",
-    :bg_fill => false
-  puts
+
 end
 
 # Asks for user input for user name

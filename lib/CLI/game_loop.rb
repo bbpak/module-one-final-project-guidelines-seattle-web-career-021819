@@ -59,6 +59,7 @@ def question_loop
 
     answer_hash = shuffle_and_print_answers(curr_question)
     curr_question.update(used: true)
+
     puts "(Current bear-bucks: #{$game_session.current_total_score})"
     print "Enter your answer: "
     # user_input = gets.chomp
@@ -80,28 +81,7 @@ def get_answer
 end
 
 # Print host and question
-def print_question(question, is_correct = nil)
-  if is_correct != nil
-    if is_correct
-      Catpix::print_image "lib/cli/img/bear5.png",
-        :center_x => true,
-        :resolution => "low",
-        :bg_fill => false
-      puts
-    else
-      Catpix::print_image "lib/cli/img/bear4.png",
-        :center_x => true,
-        :resolution => "low",
-        :bg_fill => false
-      puts
-    end
-  else
-    Catpix::print_image "lib/cli/img/bear#{(1..3).to_a.sample}.png",
-      :center_x => true,
-      :resolution => "low",
-      :bg_fill => false
-    puts
-  end
+def print_question(question)
   puts WordWrap.ww question.question.center($GAME_WIDTH), 85
 end
 
@@ -132,7 +112,7 @@ def check_answer(question, answer_hash, user_input)
   #track points in game_session. store correctness?
   correctness = answer_hash[user_input.upcase] == question.correct
   system "clear"
-  print_question(question, correctness)
+  print_question(question)
   print_colorized_answers(answer_hash, user_input.upcase, question.correct)
   puts
 
