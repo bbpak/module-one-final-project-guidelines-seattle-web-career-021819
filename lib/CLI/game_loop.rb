@@ -95,6 +95,9 @@ def shuffle_and_print_answers(question)
     letter = letter.next
   end
 
+  bear_eyes2
+  puts
+  puts
   puts question.question.center($GAME_WIDTH)
   puts
   puts print_answers(answers_hash)
@@ -179,7 +182,6 @@ def print_colorized_answers(answers, guess, correct)
     t.style = {:all_separators => true, :width => $GAME_WIDTH}
   end
 end
-
 # Prints message after user quits
 def end_message
   puts "Thanks for playing!"
