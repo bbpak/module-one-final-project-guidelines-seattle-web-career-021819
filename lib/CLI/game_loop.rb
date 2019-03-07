@@ -20,7 +20,12 @@ end
 # start new game session for user
 def initiate_game(user)
   clear_all
-  $game_session = GameSession.create(user_id: user.id, total_score: 0)
+  $game_session = GameSession.create(
+    user_id: user.id,
+    total_score: 0,
+    fifty_fifty: 1,
+    phone_a_friend: 1
+  )
 end
 
 # Question loop that fetches questions with increasing difficulty
@@ -59,18 +64,57 @@ def question_loop
 
     answer_hash = shuffle_and_print_answers(curr_question)
     curr_question.update(used: true)
-    puts "(Current bear-bucks: #{$game_session.current_total_score})"
-    print "Enter your answer: "
-    # user_input = gets.chomp
-    user_input = get_answer
+    ask_for_answer(curr_question, answer_hash, curr_question.correct)
+  end
+end
+
+# Prints asking for user's answer and asks for input
+# And then checks the user answer for correctness
+def ask_for_answer(curr_question, answer_hash, correct, colorized_ans = nil)
+  puts "(Current bear-bucks: #{$game_session.current_total_score})"
+  print "Enter your answer: "
+  # user_input = gets.chomp
+  user_input = get_answer
+
+  # Check for use of gameshow helpers
+  if (user_input.downcase.start_with?("fifty") || user_input.start_with?("50"))
+    if $game_session.fifty_fifty == 0
+      no_helper_usage("fifty-fifty", curr_question, answer_hash, correct, colorized_ans)
+    else
+      colorized_ans = fifty_fifty(answer_hash, correct)
+      print_question(curr_question)
+      puts colorized_ans
+      ask_for_answer(curr_question, answer_hash, correct, colorized_ans)
+    end
+  elsif (user_input.downcase.start_with?("phone"))
+    if $game_session.phone_a_friend == 0
+      no_helper_usage("phone-a-friend", curr_question, answer_hash, correct, colorized_ans)
+    else
+      phone_a_friend(curr_question, answer_hash, colorized_ans)
+      ask_for_answer(curr_question, answer_hash, correct)
+    end
+  # Else check answer for correctness
+  else
     check_answer(curr_question, answer_hash, user_input)
     sleep(3) if !$TEST_MODE
     system "clear"
   end
 end
 
+def no_helper_usage(helper, curr_question, answer_hash, correct, colorized_ans)
+  system "clear"
+  puts "You've already used up your #{helper} hints.".center($GAME_WIDTH).colorize(:red)
+  print_question(curr_question)
+  if colorized_ans
+    puts colorized_ans
+  else
+    print_answers(answer_hash)
+  end
+  ask_for_answer(curr_question, answer_hash, correct, colorized_ans)
+end
+
 # Gets user answer
-def get_answer
+def get_answer(question=nil, answer_hash=nil, correct=nil)
   user_input = gets.chomp
   if user_input.empty?
     get_answer
@@ -80,21 +124,13 @@ def get_answer
 end
 
 # Print host and question
-def print_question(question, is_correct = nil)
-  if is_correct != nil
-    if is_correct
-      Catpix::print_image "lib/cli/img/bear5.png",
-        :center_x => true,
-        :resolution => "low",
-        :bg_fill => false
-      puts
-    else
-      Catpix::print_image "lib/cli/img/bear4.png",
-        :center_x => true,
-        :resolution => "low",
-        :bg_fill => false
-      puts
-    end
+def print_question(question, bear_mode = nil)
+  if bear_mode != nil
+    Catpix::print_image "lib/cli/img/bear#{bear_mode}.png",
+      :center_x => true,
+      :resolution => "low",
+      :bg_fill => false
+    puts
   else
     Catpix::print_image "lib/cli/img/bear#{(1..3).to_a.sample}.png",
       :center_x => true,
@@ -114,16 +150,16 @@ def shuffle_and_print_answers(question)
     question.incorrect3
   ].shuffle
 
-  answers_hash = {}
+  answer_hash = {}
   letter = "A"
   answers.each do |answer|
-    answers_hash[letter] = answer
+    answer_hash[letter] = answer
     letter = letter.next
   end
 
   print_question(question)
-  print_answers(answers_hash)
-  return answers_hash
+  print_answers(answer_hash)
+  return answer_hash
 end
 
 
@@ -132,7 +168,8 @@ def check_answer(question, answer_hash, user_input)
   #track points in game_session. store correctness?
   correctness = answer_hash[user_input.upcase] == question.correct
   system "clear"
-  print_question(question, correctness)
+  bear_mode = correctness ? "5" : "4"
+  print_question(question, bear_mode)
   print_colorized_answers(answer_hash, user_input.upcase, question.correct)
   puts
 
