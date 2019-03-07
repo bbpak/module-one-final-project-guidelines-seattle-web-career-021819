@@ -235,9 +235,9 @@ end
 
 # Prints message after user quits
 def end_message
-  puts "Thanks for playing!"
-  print "You got #{$game_session.get_correct_questions.length} questions correct "
-  print "with total earnings of #{$game_session.current_total_score} bear-bucks!!"
-  sleep(3)
+  puts "Thanks for playing!".center($GAME_WIDTH)
+  puts
+  print "You got #{$game_session.get_correct_questions.length} questions correct with total earnings of #{$game_session.current_total_score} bear-bucks!!".center($GAME_WIDTH)
+  gets.chomp
   puts
 end
