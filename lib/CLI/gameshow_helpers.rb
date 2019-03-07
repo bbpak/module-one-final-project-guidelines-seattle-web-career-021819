@@ -1,5 +1,13 @@
-def phone_a_friend
+def phone_a_friend(question, answers)
   $game_session.update(phone_a_friend: $game_session.phone_a_friend-1)
+  system "clear"
+  puts
+  puts "Use this time to ask any one person for help.".center($GAME_WIDTH)
+  puts "Then answer the question when you are ready.".center($GAME_WIDTH)
+  puts
+
+  print_question(question, "phone")
+  print_answers(answers)
 end
 
 def fifty_fifty(answers, correct)

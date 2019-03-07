@@ -82,7 +82,7 @@ def ask_for_answer(curr_question, answer_hash, correct)
     puts new_q
     ask_for_answer(curr_question, answer_hash, correct)
   elsif $game_session.phone_a_friend > 0 && (user_input.downcase.start_with?("phone"))
-    phone_a_friend
+    phone_a_friend(curr_question, answer_hash)
     ask_for_answer(curr_question, answer_hash, correct)
   else
     check_answer(curr_question, answer_hash, user_input)
@@ -102,21 +102,13 @@ def get_answer(question, answer_hash, correct)
 end
 
 # Print host and question
-def print_question(question, is_correct = nil)
-  if is_correct != nil
-    if is_correct
-      Catpix::print_image "lib/cli/img/bear5.png",
-        :center_x => true,
-        :resolution => "low",
-        :bg_fill => false
-      puts
-    else
-      Catpix::print_image "lib/cli/img/bear4.png",
-        :center_x => true,
-        :resolution => "low",
-        :bg_fill => false
-      puts
-    end
+def print_question(question, bear_mode = nil)
+  if bear_mode != nil
+    Catpix::print_image "lib/cli/img/bear#{bear_mode}.png",
+      :center_x => true,
+      :resolution => "low",
+      :bg_fill => false
+    puts
   else
     Catpix::print_image "lib/cli/img/bear#{(1..3).to_a.sample}.png",
       :center_x => true,
@@ -154,7 +146,8 @@ def check_answer(question, answer_hash, user_input)
   #track points in game_session. store correctness?
   correctness = answer_hash[user_input.upcase] == question.correct
   system "clear"
-  print_question(question, correctness)
+  bear_mode = correctness ? "5" : "4"
+  print_question(question, bear_mode)
   print_colorized_answers(answer_hash, user_input.upcase, question.correct)
   puts
 
