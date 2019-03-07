@@ -1,8 +1,10 @@
-$game_session = nil
 $MAX_QUESTIONS = 10
 
 # Main method for the game loop
 def start_game(user)
+  $game_session = nil
+  UserGuess.delete_all
+
   initiate_game(user)
   question_loop
   end_message
