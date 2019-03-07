@@ -41,6 +41,8 @@ def question_loop
       difficulty = "hard"
     end
 
+    round_banners(index)
+
     curr_question = Question.find do |question|
       question.difficulty == difficulty &&
       !question.used
@@ -62,7 +64,6 @@ def question_loop
 
     answer_hash = shuffle_and_print_answers(curr_question)
     curr_question.update(used: true)
-
     ask_for_answer(curr_question, answer_hash, curr_question.correct)
   end
 end
@@ -70,10 +71,10 @@ end
 # Prints asking for user's answer and asks for input
 # And then checks the user answer for correctness
 def ask_for_answer(curr_question, answer_hash, correct, colorized_ans = nil)
-  puts "(#{curr_question.difficulty.capitalize}, $#{curr_question.score} | 50/50: #{$game_session.fifty_fifty}, Phone-a-friend: #{$game_session.phone_a_friend})"
+  puts "(Current bear-bucks: #{$game_session.current_total_score})"
   print "Enter your answer: "
   # user_input = gets.chomp
-  user_input = get_answer(curr_question, answer_hash, correct)
+  user_input = get_answer
 
   # Check for use of gameshow helpers
   if (user_input.downcase.start_with?("fifty") || user_input.start_with?("50"))
@@ -137,7 +138,7 @@ def print_question(question, bear_mode = nil)
       :bg_fill => false
     puts
   end
-  puts question.question.center($GAME_WIDTH)
+  puts WordWrap.ww question.question.center($GAME_WIDTH), 85
 end
 
 # Shuffles the possible answers and prints them
@@ -244,7 +245,7 @@ end
 def end_message
   puts "Thanks for playing!"
   print "You got #{$game_session.get_correct_questions.length} questions correct "
-  print "with total earnings of $#{$game_session.current_total_score}!!"
+  print "with total earnings of #{$game_session.current_total_score} bear-bucks!!"
   sleep(3)
   puts
 end

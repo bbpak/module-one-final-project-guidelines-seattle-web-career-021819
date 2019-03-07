@@ -29,25 +29,39 @@ def welcome
   puts bb.asciify "Alex Trebear"
   sleep(2)
   system "clear"
-  bear_host
+  #bear_host
+  Catpix::print_image "lib/cli/img/bear5.png",
+    :center_x => true,
+    :resolution => "low",
+    :bg_fill => false
+  puts
 end
 
 # Asks for user input for user name
 # And creates new user instance
+
 def get_user
-  dd= Artii::Base.new :font => 'invita'
-  puts
-  puts dd.asciify("What's your name?")
+  print "What's your name? ".center(140)
   new_name = gets.chomp
   puts
-  system "clear"
   new_user = User.create(name: new_name)
   new_user
 end
+# def get_user
+#   dd= Artii::Base.new :font => 'invita'
+#   puts
+#   puts dd.asciify("What's your name?")
+#   new_name = gets.chomp
+#   puts
+#   system "clear"
+#   new_user = User.create(name: new_name)
+#   new_user
+# end
 
 # Main menu for user to start game, view leaderboard, or exit
 def menu(user)
   system "clear"
+  print "\e[8;1000;1000t"
   aa = Artii::Base.new :font => 'small'
   puts aa.asciify("What would you like to do?")
   puts
