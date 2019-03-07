@@ -9,17 +9,9 @@ def start_game(user)
   menu(user)
 end
 
-# Clear tables that shouldn't persist
-def clear_all
-  GameSession.delete_all
-  UserGuess.delete_all
-  #Question.delete_all
-end
-
 # Reset per-playthrough tables and
 # start new game session for user
 def initiate_game(user)
-  clear_all
   $game_session = GameSession.create(
     user_id: user.id,
     total_score: 0,

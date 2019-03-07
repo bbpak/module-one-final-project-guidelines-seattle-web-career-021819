@@ -1,6 +1,7 @@
 # Main method for starting the game
 # Called in bin/run.rb
 def play_game
+  system "clear"
   print "\e[8;1000;1000t"
   welcome if !$TEST_MODE
   current_user = get_user
@@ -90,6 +91,7 @@ def menu(user)
     return nil
   else
     puts "Selection not recognized"
+    system "clear"
     menu(user)
   end
 end
@@ -109,5 +111,6 @@ def display_leaderboard(user)
    table = Terminal::Table.new :headings => ["Rank", "Name", "Score"], :rows => rows
    puts table
    sleep(3)
+   system "clear"
    menu(user)
 end
