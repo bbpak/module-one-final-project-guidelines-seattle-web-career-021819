@@ -214,7 +214,7 @@ def check_answer(question, answer_hash, user_input)
 
   UserGuess.create(
     question_id: question.id,
-    user_id: $game_session.user.id,
+    game_session_id: $game_session.id,
     correctness: correctness
   )
 end

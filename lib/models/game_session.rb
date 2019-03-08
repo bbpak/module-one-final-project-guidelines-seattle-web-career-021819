@@ -1,6 +1,7 @@
 class GameSession < ActiveRecord::Base
   belongs_to :user
   has_many :questions
+  has_many :user_guesses
 
   def get_correct_questions
     UserGuess.all.select {|guess| guess.correctness}
