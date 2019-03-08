@@ -35,16 +35,16 @@ TriviaApi.get_questions(amount: "15", category: 22, difficulty: "hard").shuffle.
 end
 
 
-b = User.find_or_create_by(name: "Brian")
-j = User.find_or_create_by(name: "Jen")
-c = User.find_or_create_by(name: "Cody")
+b = User.find_or_create_by(name: "Beary White")
+j = User.find_or_create_by(name: "Ursa Funny")
+c = User.find_or_create_by(name: "Ted E. Bear")
 at = User.find_or_create_by(name: "Alex Trebear")
-GameSession.find_or_create_by(user_id: b.id, total_score: 10)
+GameSession.find_or_create_by(user_id: c.id, total_score: 10)
 GameSession.find_or_create_by(user_id: at.id, total_score: 100)
 GameSession.find_or_create_by(user_id: b.id, total_score: 15)
 GameSession.find_or_create_by(user_id: j.id, total_score: 25)
 GameSession.find_or_create_by(user_id: j.id, total_score: 50)
-GameSession.find_or_create_by(user_id: c.id, total_score: 60)
-GameSession.find_or_create_by(user_id: j.id, total_score: 20)
+GameSession.find_or_create_by(user_id: b.id, total_score: 60)
+GameSession.find_or_create_by(user_id: c.id, total_score: 20)
 GameSession.find_or_create_by(user_id: c.id, total_score: 50)
-GameSession.find_or_create_by(user_id: j.id, total_score: 30)
+GameSession.find_or_create_by(user_id: c.id, total_score: 30)
