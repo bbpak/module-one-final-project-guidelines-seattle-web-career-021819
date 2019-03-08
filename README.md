@@ -30,7 +30,7 @@ You can run the game by using the `run` rake task.
 $ rake run
 ```
 
-== INSERT DEMO VIDEO HERE ==
+![demo_gif](https://media.giphy.com/media/YWceCFqRxtzCGf4jw9/giphy.gif)
 
 ## About the Program
 
