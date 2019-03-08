@@ -261,4 +261,5 @@ def end_message
   bear_paw
   sleep(1)
   gets.chomp
+  system "clear"
 end
