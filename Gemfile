@@ -13,6 +13,5 @@ gem "word_wrap"
 gem "require_all"
 
 group :imagemagick do
-  gem 'rmagick', '~> 2.15'
   gem 'catpix'
 end
