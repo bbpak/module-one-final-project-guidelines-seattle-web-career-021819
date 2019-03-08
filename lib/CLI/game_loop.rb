@@ -81,7 +81,7 @@ def ask_for_answer(curr_question, answer_hash, correct, colorized_ans = nil)
   puts
   print "Enter your answer: "
   # user_input = gets.chomp
-  user_input = get_answer
+  user_input = get_answer(curr_question)
 
   # Check for use of gameshow helpers
   if (user_input.downcase.start_with?("fifty") || user_input.start_with?("50"))
@@ -124,7 +124,19 @@ end
 def get_answer(question=nil, answer_hash=nil, correct=nil)
   user_input = gets.chomp
   if user_input.empty?
-    get_answer
+    get_answer(question)
+  elsif (
+    ['a', 'b', 'c', 'd'].exclude?(user_input.downcase) &&
+    user_input.downcase != question.correct.downcase &&
+    user_input.downcase != question.incorrect1.downcase &&
+    user_input.downcase != question.incorrect2.downcase &&
+    user_input.downcase != question.incorrect3.downcase &&
+    !user_input.downcase.start_with?("phone") &&
+    !user_input.downcase.start_with?("50") &&
+    !user_input.downcase.start_with?("fifty")
+  )
+    puts "Invalid answer. Try again.".colorize(:red)
+    get_answer(question)
   else
     user_input
   end
