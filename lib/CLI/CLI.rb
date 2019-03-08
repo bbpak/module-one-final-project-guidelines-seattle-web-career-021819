@@ -89,15 +89,20 @@ end
 def display_leaderboard(user)
   system "clear"
   rows = []
-  count = 1
   puts
   puts "Leaderboard:".center(`tput cols`.to_i)
   puts
   top_scores = GameSession.all.max_by(10){|sesh| sesh.total_score}
-  top_scores.each do |gg|
-    rows << [count, gg.user.name, gg.total_score]
+  10.times do |index|
+    gg = top_scores[index]
+
+    if gg
+      rows << [index+1, gg.user.name, gg.total_score]
+    else
+      rows << [index+1, "---", "---"]
+    end
    #puts "#{count}. #{gg.user.name}"
-    count += 1
+
    end
    table = Terminal::Table.new do |t|
     t.headings = ["Rank", "Name", "Score"]
