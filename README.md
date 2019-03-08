@@ -42,7 +42,7 @@ You can uninstall the external dependency by running
 $ ruby uninstall.rb
 ```
 ## Contributing
-Please read [CONTRIBUTING.md](CONTRIBUTING.MD) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## License
 
