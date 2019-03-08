@@ -8,7 +8,7 @@ Users can test their trivia knowledge while our program showboats all over their
 ## Prerequisites
 The following instructions are for macOS.
 
-You will need Homebrew installed for the installation of an external dependency. https://brew.sh/
+You will need Ruby (https://www.ruby-lang.org/en/documentation/installation/) and Homebrew (https://brew.sh/) installed in order to use the provided installation scripts.
 
 ## Installation and Setup
 First, clone or download the repository. There are Ruby scripts available for installing dependencies and initializing the database in the project directory.
@@ -25,7 +25,7 @@ $ ruby setup_lite.rb
 After installing dependencies, these scripts will run rake tasks to initialize the database by creating and seeding the tables.
 
 ## Usage
-You can run the game by using the `run` rake task. For the best experience, we HIGHLY recommend you to zoom in once (just one tap of command +) in the terminal.
+You can run the game by using the `run` rake task. For the best experience, we HIGHLY recommend you to zoom in once (just one tap of command +) in and to use an opaque black background for the terminal.
 ```sh
 $ rake run
 ```
