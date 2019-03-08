@@ -175,7 +175,7 @@ end
 # Compares user answer with one of the possible answers
 def check_answer(question, answer_hash, user_input)
   #track points in game_session. store correctness?
-  correctness = answer_hash[user_input.upcase] == question.correct
+  correctness = answer_hash[user_input.upcase] == question.correct || user_input.downcase == question.correct.downcase
   system "clear"
   bear_mode = correctness ? "5" : "4"
   print_question(question, bear_mode)
