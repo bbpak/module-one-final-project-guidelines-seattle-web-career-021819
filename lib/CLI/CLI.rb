@@ -3,10 +3,9 @@
 def play_game
   system "clear"
   print "\e[8;1000;1000t"
-  # welcome if !$TEST_MODE
-  # current_user = get_user
-  # menu(current_user)
-  menu(User.find_or_create_by(name: "Test User"))
+  welcome if !$TEST_MODE
+  current_user = get_user
+  menu(current_user)
 end
 
 # Gratuitous ASCII art introduction
