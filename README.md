@@ -36,7 +36,7 @@ Video Demonstration: https://youtu.be/Q6crYk-7oXE
 
 ## Models
 
-![flowchart](https://i.imgur.com/pO1IxTo.png)
+![flowchart](https://i.imgur.com/3ED4uBH.png)
 
 This flowchart represents the model relationships for our database. The database is seeded prior to starting a game which populates the Questions table with questions from the Open Trivia Database API (https://opentdb.com/). When a game is started, a new GameSession is created which keeps track of the User's scores and guess record through UserGuesses. This allows us to keep track of the current and cumulative score for the User as they play, and rank them in a leaderboard after they complete a game session.
 
