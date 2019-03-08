@@ -49,8 +49,8 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 This project is licensed under the Learn.co Educational Content License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgements
-* The quick wits of Anders & Molly for their suggestion of the bear theme that has no fur-ther meaning particular
+* The quick wits of Anders & Molly for their suggestion of the bear theme that has no fur-ther meaning
 * The projects by the first cohort and their introduction of ASCII art, for better or for worse
 
 
-<small><center>Made with 🐻 &nbsp;by Brian & Jennifer</center></small>
+<small><center>Made with 🐻 &nbsp;by Jen & Bri</center></small>
