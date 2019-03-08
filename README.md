@@ -32,6 +32,8 @@ $ rake run
 
 ![demo_gif](https://media.giphy.com/media/9M1jDMHyAfEIQ7LEGd/giphy.gif)
 
+Video Demonstration: https://youtu.be/Q6crYk-7oXE
+
 ## Models
 
 ![flowchart](https://i.imgur.com/pO1IxTo.png)
