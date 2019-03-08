@@ -22,11 +22,8 @@ def initiate_game(user)
   )
 end
 
-# Question loop that fetches questions with increasing difficulty
-def question_loop
-  print "\e[8;1000;#{$GAME_WIDTH}t"
-  system "clear"
-
+def get_questions_for_game
+  questions = []
   $MAX_QUESTIONS.times do |index|
     difficulty = "easy"
     if (5..7).include?(index)
@@ -35,27 +32,38 @@ def question_loop
       difficulty = "hard"
     end
 
-    round_banners(index)
-
-    curr_question = Question.find do |question|
+    question = Question.find do |question|
       question.difficulty == difficulty &&
       !question.used
     end
 
     # If we run out of unique questions, reset
-    if !curr_question
+    if !question
       Question.select do |question|
         question.difficulty == difficulty
       end.each do |question|
         question.update(used: false)
       end
 
-      curr_question = Question.find do |question|
+      question = Question.find do |question|
         question.difficulty == difficulty &&
         !question.used
       end
     end
 
+    questions << question
+  end
+
+  questions
+end
+
+# Question loop that fetches questions with increasing difficulty
+def question_loop
+  print "\e[8;1000;#{$GAME_WIDTH}t"
+  system "clear"
+
+  get_questions_for_game.each_with_index do |curr_question, index|
+    round_banners(index)
     answer_hash = shuffle_and_print_answers(curr_question)
     curr_question.update(used: true)
     ask_for_answer(curr_question, answer_hash, curr_question.correct)

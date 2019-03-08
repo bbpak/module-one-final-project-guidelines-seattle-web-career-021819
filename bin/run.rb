@@ -1,5 +1,5 @@
 require_relative '../config/environment'
-$TEST_MODE = false # Setting this to true puts the program in turbo mode
+$TEST_MODE = true # Setting this to true puts the program in turbo mode
 $GAME_WIDTH = 85 # Set width of terminal for the game
 $IS_LITE_MODE = false
 begin
