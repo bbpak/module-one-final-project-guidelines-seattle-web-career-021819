@@ -25,7 +25,7 @@ $ ruby setup_lite.rb
 After installing dependencies, these scripts will run rake tasks to initialize the database by creating and seeding the tables.
 
 ## Usage
-You can run the game by using the `run` rake task.
+You can run the game by using the `run` rake task. For the best experience, we HIGHLY recommend you to zoom in once (just one tap of command +) in the terminal.
 ```sh
 $ rake run
 ```
