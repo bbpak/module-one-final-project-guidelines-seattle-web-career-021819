@@ -259,6 +259,6 @@ def end_message
   puts
   puts
   bear_paw
+  sleep(1)
   gets.chomp
-  puts
 end
