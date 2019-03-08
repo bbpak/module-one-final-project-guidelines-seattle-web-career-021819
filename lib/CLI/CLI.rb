@@ -15,22 +15,22 @@ def welcome
   bb = Artii::Base.new :font => 'doh'
   cc = Artii::Base.new :font => 'larry3d'
   dd = Artii::Base.new :font => 'banner3'
-  puts bb.asciify('Welcome to')
-  sleep(2)
-  system "clear"
-  puts aa.asciify("Who Wants To Be A")
-  sleep(1)
-  puts bb.asciify("   Millionbear")
-  puts cc.asciify(" $$$$$$$$$$$$$$$$$$$$$$$")
-  sleep(2)
-  system "clear"
-  puts aa.asciify "      With your host"
-  sleep(1)
-  system "clear"
-  puts bb.asciify "            Alex"
-  puts bb.asciify "       Trebear"
-  sleep(2)
-  system "clear"
+  # puts bb.asciify('Welcome to')
+  # sleep(2)
+  # system "clear"
+  # puts aa.asciify("Who Wants To Be A")
+  # sleep(1)
+  # puts bb.asciify("   Millionbear")
+  # puts cc.asciify(" $$$$$$$$$$$$$$$$$$$$$$$")
+  # sleep(2)
+  # system "clear"
+  # puts aa.asciify "      With your host"
+  # sleep(1)
+  # system "clear"
+  # puts bb.asciify "            Alex"
+  # puts bb.asciify "       Trebear"
+  # sleep(2)
+  # system "clear"
   #bear_host
   Catpix::print_image "lib/cli/img/bear5.png",
     :center_x => true,

@@ -7,6 +7,12 @@ task :setup do
   Rake::Task["setup_db"].invoke
 end
 
+desc 'setup for lite'
+task :setup_lite do
+  Rake::Task["install_lite"].invoke
+  Rake::Task["setup_db"].invoke
+end
+
 desc 'installs all dependencies'
 task :install do
   puts "Installing external dependencies..."
@@ -19,6 +25,14 @@ task :install do
   puts
   puts "Installing gem dependencies..."
   system(`echo bundle install`)
+  puts "...Done"
+  puts
+end
+
+desc 'lite install for not using imagemagick'
+task :install_lite do
+  puts "Installing gem dependencies..."
+  system(`echo bundle install --without imagemagick`)
   puts "...Done"
   puts
 end

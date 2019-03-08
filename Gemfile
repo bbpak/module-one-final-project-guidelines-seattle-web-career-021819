@@ -9,6 +9,10 @@ gem "htmlentities"
 gem "colorize"
 gem "terminal-table"
 gem "artii"
+gem 'catpix'
 gem "word_wrap"
-gem "catpix"
 gem "require_all"
+
+group :imagemagick do
+  gem 'catpix'
+end
