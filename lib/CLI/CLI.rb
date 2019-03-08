@@ -32,7 +32,7 @@ def welcome
   sleep(2)
   system "clear"
   # bear_host
-  binding.pry
+
   if !$IS_LITE_MODE
     Catpix::print_image "lib/cli/img/bear5.png",
       :center_x => true,
