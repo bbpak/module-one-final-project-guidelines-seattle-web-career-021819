@@ -1,4 +1,4 @@
 class UserGuess < ActiveRecord::Base
-  belongs_to :game_session
+  belongs_to :user
   belongs_to :question
 end

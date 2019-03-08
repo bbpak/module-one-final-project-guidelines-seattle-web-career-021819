@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 5) do
   end
 
   create_table "user_guesses", force: :cascade do |t|
-    t.integer "game_session_id"
+    t.integer "user_id"
     t.integer "question_id"
     t.boolean "correctness"
   end
