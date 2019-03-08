@@ -30,7 +30,7 @@ You can run the game by using the `run` rake task.
 $ rake run
 ```
 
-![demo_gif](https://media.giphy.com/media/YWceCFqRxtzCGf4jw9/giphy.gif)
+![demo_gif](https://media.giphy.com/media/9M1jDMHyAfEIQ7LEGd/giphy.gif)
 
 ## About the Program
 
