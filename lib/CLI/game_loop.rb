@@ -65,7 +65,7 @@ end
 # Prints asking for user's answer and asks for input
 # And then checks the user answer for correctness
 def ask_for_answer(curr_question, answer_hash, correct, colorized_ans = nil)
-  puts "                           $$Current bear-bucks: #{$game_session.current_total_score}  $$"
+  puts "                           $$ Current bear-bucks: #{$game_session.current_total_score} $$"
   puts
   print "Enter your answer: "
   # user_input = gets.chomp
