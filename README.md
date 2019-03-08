@@ -32,9 +32,11 @@ $ rake run
 
 ![demo_gif](https://media.giphy.com/media/9M1jDMHyAfEIQ7LEGd/giphy.gif)
 
-## About the Program
+## Models
 
 ![flowchart](https://i.imgur.com/pO1IxTo.png)
+
+This flowchart represents the model relationships for our database. The database is seeded prior to starting a game which populates the Questions table with questions from the Open Trivia Database API (https://opentdb.com/). When a game is started, a new GameSession is created which keeps track of the User's scores and guess record through UserGuesses. This allows us to keep track of the current and cumulative score for the User as they play, and rank them in a leaderboard after they complete a game session.
 
 ## Uninstall
 You can uninstall the external dependency by running
