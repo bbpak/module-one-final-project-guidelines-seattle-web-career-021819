@@ -4,7 +4,7 @@ require 'sinatra/activerecord/rake'
 desc 'install dependencies and setup db'
 task :setup do
   Rake::Task["install"].invoke
-  Rake::Task["db_init"].invoke
+  Rake::Task["setup_db"].invoke
 end
 
 desc 'installs all dependencies'
@@ -12,8 +12,11 @@ task :install do
   puts "Installing external dependencies..."
   puts "Installing imagemagick..."
   system(`echo brew install imagemagick@6`)
+  puts "...Done"
+  puts
   puts "Linking imagemagick..."
   system(`echo link --force imagemagick@6`)
+  puts
   puts "Installing gem dependencies..."
   system(`echo bundle install`)
   puts "...Done"
@@ -21,10 +24,11 @@ task :install do
 end
 
 desc 'creates and seeds db'
-task :db_init do
+task :setup_db do
   puts "Initializing database..."
   puts "Creating tables..."
   Rake::Task["db:migrate"].invoke
+  puts
   puts "Seeding tables..."
   Rake::Task["db:seed"].invoke
   puts "...Done"

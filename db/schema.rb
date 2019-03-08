@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 5) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string  "question"
-    t.string  "correct"
-    t.string  "incorrect1"
-    t.string  "incorrect2"
-    t.string  "incorrect3"
-    t.string  "difficulty"
+    t.string "question"
+    t.string "correct"
+    t.string "incorrect1"
+    t.string "incorrect2"
+    t.string "incorrect3"
+    t.string "difficulty"
     t.integer "score"
     t.boolean "used"
   end
