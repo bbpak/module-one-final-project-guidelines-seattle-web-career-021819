@@ -32,11 +32,14 @@ def welcome
   # sleep(2)
   # system "clear"
   #bear_host
-  Catpix::print_image "lib/cli/img/bear5.png",
-    :center_x => true,
-    :resolution => "low",
-    :bg_fill => false
-  puts
+
+  if !$IS_LITE_MODE
+    Catpix::print_image "lib/cli/img/bear5.png",
+      :center_x => true,
+      :resolution => "low",
+      :bg_fill => false
+    puts
+  end
 end
 
 # Asks for user input for user name

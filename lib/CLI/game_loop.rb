@@ -120,18 +120,20 @@ end
 
 # Print host and question
 def print_question(question, bear_mode = nil)
-  if bear_mode != nil
-    Catpix::print_image "lib/cli/img/bear#{bear_mode}.png",
-      :center_x => true,
-      :resolution => "low",
-      :bg_fill => false
-    puts
-  else
-    Catpix::print_image "lib/cli/img/bear#{(1..3).to_a.sample}.png",
-      :center_x => true,
-      :resolution => "low",
-      :bg_fill => false
-    puts
+  if !$IS_LITE_MODE
+    if bear_mode != nil
+      Catpix::print_image "lib/cli/img/bear#{bear_mode}.png",
+        :center_x => true,
+        :resolution => "low",
+        :bg_fill => false
+      puts
+    else
+      Catpix::print_image "lib/cli/img/bear#{(1..3).to_a.sample}.png",
+        :center_x => true,
+        :resolution => "low",
+        :bg_fill => false
+      puts
+    end
   end
   puts WordWrap.ww question.question.center($GAME_WIDTH), $GAME_WIDTH
 end
