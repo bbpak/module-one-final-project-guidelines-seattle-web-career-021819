@@ -34,7 +34,7 @@ $ rake run
 
 ## About the Program
 
-== IMPLEMENTATION DETAILS ==
+![flowchart](https://i.imgur.com/pO1IxTo.png)
 
 ## Uninstall
 You can uninstall the external dependency by running
