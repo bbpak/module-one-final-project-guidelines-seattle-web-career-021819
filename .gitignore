@@ -5,7 +5,6 @@ log
 node_modules
 out
 tmp
-Gemfile.lock
 
 *.iml
 *.log
