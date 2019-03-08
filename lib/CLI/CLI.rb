@@ -49,6 +49,16 @@ def get_user
   print "What's your name?".center(`tput cols`.to_i)
   print "".center(95)
   new_name = gets.chomp
+
+  while new_name.downcase.start_with?("drop table")
+    puts
+    puts "You think you're sooooooo clever, huh?".center(`tput cols`.to_i)
+    puts
+    print "What's your REAL name?".center(`tput cols`.to_i)
+    print "".center(95)
+    new_name = gets.chomp
+  end
+
   puts
   new_user = User.find_or_create_by(name: new_name)
   new_user
