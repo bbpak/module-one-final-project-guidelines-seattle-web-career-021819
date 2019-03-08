@@ -4,7 +4,7 @@ def how_to_play(user)
   puts
   puts "Select option 1 from the main menu to start a new game."
   puts
-  puts "Enter A, B, C, od D to select the correct answer"
+  puts "Enter A, B, C, or D to select the correct answer"
   puts
   puts "Unsure? Use a lifeline!"
   puts
