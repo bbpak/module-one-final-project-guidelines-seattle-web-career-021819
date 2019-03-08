@@ -24,6 +24,7 @@ end
 
 def get_questions_for_game
   questions = []
+
   $MAX_QUESTIONS.times do |index|
     difficulty = "easy"
     if (5..7).include?(index)
@@ -32,26 +33,27 @@ def get_questions_for_game
       difficulty = "hard"
     end
 
-    question = Question.find do |question|
-      question.difficulty == difficulty &&
-      !question.used
+    question = Question.find do |curr_question|
+      curr_question.difficulty == difficulty &&
+      !curr_question.used
     end
 
     # If we run out of unique questions, reset
     if !question
-      Question.select do |question|
-        question.difficulty == difficulty
-      end.each do |question|
-        question.update(used: false)
+      Question.select do |diff_quest|
+        diff_quest.difficulty == diff_quest
+      end.each do |used_quest|
+        used_quest.update(used: false)
       end
 
-      question = Question.find do |question|
-        question.difficulty == difficulty &&
-        !question.used
+      question = Question.find do |curr_question|
+        curr_question.difficulty == difficulty &&
+        !curr_question.used
       end
     end
 
     questions << question
+    question.update(used: true)
   end
 
   questions
@@ -64,8 +66,8 @@ def question_loop
 
   get_questions_for_game.each_with_index do |curr_question, index|
     round_banners(index)
+
     answer_hash = shuffle_and_print_answers(curr_question)
-    curr_question.update(used: true)
     ask_for_answer(curr_question, answer_hash, curr_question.correct)
   end
 end
@@ -253,6 +255,10 @@ def end_message
   puts "Thanks for playing!".center($GAME_WIDTH)
   puts
   print "You got #{$game_session.get_correct_questions.length} questions correct with total earnings of #{$game_session.current_total_score} bear-bucks!!".center($GAME_WIDTH)
+  puts
+  puts
+  puts
+  bear_paw
   gets.chomp
   puts
 end

@@ -3,9 +3,10 @@
 def play_game
   system "clear"
   print "\e[8;1000;1000t"
-  welcome if !$TEST_MODE
-  current_user = get_user
-  menu(current_user)
+  # welcome if !$TEST_MODE
+  # current_user = get_user
+  # menu(current_user)
+  menu(User.find_or_create_by(name: "Test User"))
 end
 
 # Gratuitous ASCII art introduction
@@ -32,7 +33,7 @@ def welcome
   sleep(2)
   system "clear"
   # bear_host
-
+  binding.pry
   if !$IS_LITE_MODE
     Catpix::print_image "lib/cli/img/bear5.png",
       :center_x => true,
