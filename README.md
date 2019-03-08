@@ -8,7 +8,7 @@ Users can test their trivia knowledge while our program showboats all over their
 ## Prerequisites
 The following instructions are for macOS.
 
-You will need Homebrew installed for the installation of an external dependency. https://brew.sh/
+You will need Ruby (https://www.ruby-lang.org/en/documentation/installation/) and Homebrew (https://brew.sh/) installed in order to use the provided installation scripts.
 
 ## Installation and Setup
 First, clone or download the repository. There are Ruby scripts available for installing dependencies and initializing the database in the project directory.
